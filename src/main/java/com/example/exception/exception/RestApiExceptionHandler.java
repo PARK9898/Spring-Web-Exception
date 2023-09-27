@@ -18,11 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice (basePackageClasses = {RestApiBController.class, RestApiController.class})// RestApi가 사용되는곳에 예외를 감지한다
 @Order(1)
 public class RestApiExceptionHandler {
-	// @ExceptionHandler(value = {Exception.class}) // 어떠한 예외를 받을것인가가
-	// public ResponseEntity exception(Exception e) {
-	// 	log.error("RestApiExceptionHandler", e);// 여기서 잡았다고 기록 남
-	// 	return ResponseEntity.status(200).build();
-	// }
+	@ExceptionHandler(value = {Exception.class}) // 어떠한 예외를 받을것인가가
+	public ResponseEntity exception(Exception e) {
+		log.error("RestApiExceptionHandler", e);// 여기서 잡았다고 기록 남
+		return ResponseEntity.status(200).build();
+	}
 	@ExceptionHandler(value = {IndexOutOfBoundsException.class})
 	public ResponseEntity outOfBound(IndexOutOfBoundsException e) {
 		log.error("IndexOutOfBoundsException", e);// 여기서 잡았다고 기록 남
